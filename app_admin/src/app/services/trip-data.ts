@@ -3,6 +3,8 @@ import{ HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Trip } from '../models/trip';
+import { AuthResponse } from '../models/auth-response';
+import { User } from '../models/user';
 
 
 
@@ -12,6 +14,10 @@ import { Trip } from '../models/trip';
 
 
 export class TripData {
+  register(user: User, passwd: string): Observable<AuthResponse> {
+   ;
+    return this.handleAuthAPICall('register', user, passwd);
+  }
 
 
   constructor(private http: HttpClient) { }
@@ -36,7 +42,13 @@ export class TripData {
     return this.http.put<Trip>(`http://localhost:3000/api/trips/${tripCode}`, formData);
   }
 
-
+  login(user: User, passwd: string): Observable<AuthResponse> {
+  
+    return this.handleAuthAPICall('login', user, passwd);
+  }
+  handleAuthAPICall(arg0: string, user: User, passwd: string): Observable<AuthResponse> {
+    throw new Error('Method not implemented.');
+  }
 
 
 
